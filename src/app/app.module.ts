@@ -12,6 +12,8 @@ import { CoursesComponent } from './features/courses/courses.component';
 import { CoursesListComponent } from './features/courses/courses-list/courses-list.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { WINDOW_PROVIDERS } from './auth/window.provider';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, CourseInfoComponent, CoursesComponent, CoursesListComponent],
@@ -20,9 +22,10 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule  
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [AuthorizedGuard, NotAuthorizedGuard, CoursesService, CoursesStoreService],
+  providers: [AuthorizedGuard, NotAuthorizedGuard, CoursesService, CoursesStoreService, WINDOW_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

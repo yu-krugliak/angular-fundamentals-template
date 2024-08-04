@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, EmailValidator, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService, UserModel } from '@app/auth/services/auth.service';
 import { EmailValidatorDirective } from '@app/shared/directives/email.directive';
 
 @Component({
@@ -10,8 +11,7 @@ import { EmailValidatorDirective } from '@app/shared/directives/email.directive'
 export class RegistrationFormComponent {
   registrationForm!: FormGroup;
   // Use the names `name`, `email`, `password` for the form controls.
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registrationForm = fb.group({
       name: ["", [Validators.required, Validators.minLength(6)]],
       email: ["", [Validators.required, this.useEmailValidator()]],

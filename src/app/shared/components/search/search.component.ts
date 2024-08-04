@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CoursesStoreService } from '@app/services/courses-store.service';
 
 @Component({
   selector: 'app-search',
@@ -10,12 +11,14 @@ export class SearchComponent {
   // Use the name `search` for the @Output.
   @Input() placeholder: string = 'Input text';
   @Output() search = new EventEmitter<string>();
+
+  constructor(private coursesStore: CoursesStoreService) {} 
   
-  searchTerm: string[] = [];
+  searchTerm: string = '';
 
   onSubmit(): void {
-    this.search.emit("value");
-    this.search.emit(this.searchTerm[0]);
+    this.coursesStore.searchCourses(this.searchTerm);
+    this.search.emit(this.searchTerm);
   }
 }
 
