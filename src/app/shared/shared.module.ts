@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DurationPipe } from './pipes/duration.pipe';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { EmailValidatorDirective } from '@shared/directives/email.directive';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { TogglePasswordDirective } from './directives/toggle-password.directive';
 
 const components = [
   HeaderComponent,
@@ -29,7 +31,8 @@ const components = [
   CourseFormComponent,
   DurationPipe,
   CustomDatePipe,
-  EmailValidatorDirective
+  EmailValidatorDirective,
+  TogglePasswordDirective
 ];
 
 @NgModule({
@@ -39,6 +42,7 @@ const components = [
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule
   ],
   exports: [components]
 })

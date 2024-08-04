@@ -1,5 +1,5 @@
-<div class="app-button">
+<button [type]="type" class="app-button" (click)="onClick()">
   <!-- Replace the text below with your code -->
   <fa-icon [icon]="iconName" *ngIf="iconName"></fa-icon>
   {{ buttonText }}
-</div>
+</button>

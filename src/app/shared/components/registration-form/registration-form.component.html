@@ -1,28 +1,38 @@
 <h2 class="text-align-center">Registration</h2>
 <div class="app-plate">
-  <div class="registration-form">
-    <div>
+  <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div style="margin-bottom:0;">
       <div class="form__control">
         <label for="name">Name</label>
         <!--Use the name `name` for the form control.-->
-        <input type="text" id="name" placeholder="Input text"/>
-        <span id="nameErrorMessage" class="text-danger">Name is required.</span>
+        <input type="text" id="name" placeholder="Input text" formControlName="name"/>
+        <span *ngIf="getName?.errors?.['required'] && (getName?.dirty || getName?.touched || registrationForm.touched)" id="nameErrorMessage" class="text-danger">Name is required.</span>
+        <span *ngIf="getName?.errors?.['minlength'] && (getName?.dirty || getName?.touched)" id="nameErrorMessage" class="text-danger">Name should be not be less than 6 symbols</span>
       </div>
       <div class="form__control">
         <!--Use the name `email` for the form control.-->
         <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Input text"/>
-        <span id="emailErrorMessage" class="text-danger">Email is required.</span>
+        <input type="text" id="email" placeholder="Input text" formControlName="email"/>
+        <span *ngIf="getEmail?.errors?.['required'] && (getEmail?.dirty || getEmail?.touched || registrationForm.touched)" id="emailErrorMessage" class="text-danger">Email is required.</span>
+        <span *ngIf="getEmail?.errors?.['invalidEmail'] && getEmail?.dirty" id="emailErrorMessage" class="text-danger">
+          Invalid Email: {{ getEmail?.errors?.['invalidEmail'].value }}
+        </span>
       </div>
       <div class="form__control">
         <!--Use the name `password` for the form control.-->
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Input text"/>
-        <span id="passwordErrorMessage" class="text-danger">Password is required.</span>
+        <input type="password" id="password" placeholder="Input text" formControlName="password" appTogglePassword #passwordToggle="toggle"/>
+        <span *ngIf="getPassword?.errors?.['required'] && (getPassword?.dirty || getPassword?.touched || registrationForm.touched)" id="passwordErrorMessage" class="text-danger">Password is required.</span>
+        <button (click)="passwordToggle.toggleType()"></button>
       </div>
     </div>
-    <div class="form__action">
-      <app-button></app-button>
+    <div style="margin:auto;">
+      <div class="form__action full-width-button">
+        <app-button [type]="'submit'" [buttonText]="'LOGIN'"></app-button>
+      </div>
+      <div class="form__text" style="margin-top:80px;">
+        Log in here <a routerLink="/login"><strong>Login</strong></a> 
+      </div>
     </div>
-  </div>
+  </form>
 </div>

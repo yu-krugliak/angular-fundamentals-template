@@ -1,3 +1,4 @@
+<app-search [placeholder]="'Enter course name...'" (search)="handleSearch($event)"></app-search>
 <div *ngFor="let course of courses">
     <app-course-card
       [course]="course"

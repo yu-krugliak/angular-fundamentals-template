@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '@app/store/courses/course';
-import { faEdit, faRemove, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-courses-list',
@@ -28,5 +28,9 @@ export class CoursesListComponent {
 
   onDeleteCourse(course: Course) {
     this.deleteCourse.emit(course);
+  }
+
+  handleSearch(searchTerm: string) {
+    console.log(searchTerm);
   }
 }

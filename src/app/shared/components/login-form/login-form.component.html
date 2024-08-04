@@ -1,27 +1,35 @@
 <h2 class="text-align-center">Login</h2>
 <div class="app-plate">
-  <form #loginForm="ngForm">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="login-form">
       <div>
         <div class="form__control">
           <label for="email">Email</label>
           <!--Use the name `email` for the form control.-->
-          <input type="text" id="email" placeholder="Input text"/>
-          <span id="emailErrorMessage" class="text-danger">Email is required.</span>
+          <input type="text" id="email" placeholder="Input text" name="email" [(ngModel)]="user.email" #userEmail="ngModel" emailValidator required/>
+          <span *ngIf="userEmail.errors?.['required'] && (userEmail.dirty || userEmail.touched || loginForm.submitted)" id="emailErrorMessage" class="text-danger">Email is required.</span>
+          <span *ngIf="userEmail.errors?.['invalidEmail'] && userEmail.dirty" id="emailErrorMessage" class="text-danger">
+            Invalid Email: {{ userEmail.errors?.['invalidEmail'].value }}
+          </span>
         </div>
-        <div class="form__control">
+        <div class="form__control  password-wrapper">
           <label for="password">Password</label>
           <!--Use the name `password` for the form control.-->
-          <input type="password" id="password" placeholder="Input text"/>
-          <span id="passwordErrorMessage" class="text-danger">Password is required.</span>
+          <div class="input-group">
+            <input class="toggle-password-btn" type="password" id="password" placeholder="Input text" name="password" [(ngModel)]="user.password" #password="ngModel" appTogglePassword #passwordToggle="toggle" required/>
+            <button style="padding: 5px 10px; font-size: 0.8em;" (click)="passwordToggle.toggleType()" aria-label="Toggle password visibility"> 
+              <fa-icon [icon]="passwordToggle.type === 'password' ? toggleOff : toggleOn"></fa-icon>
+            </button>
+          </div>
+          <span *ngIf="password.errors?.['required'] && (password.dirty || password.touched || loginForm.submitted)" id="passwordErrorMessage" class="text-danger">Password is required.</span>
         </div>
       </div>
-      <div>
-        <div class="form__action">
-          <app-button></app-button>
+      <div class="action-items">
+        <div class="form__action" style="margin: auto;">
+          <app-button [type]="'submit'" [buttonText]="'LOGIN'"></app-button>
         </div>
-        <div class="form__text">
-          If you don't have an account you may <strong>Registration</strong>
+        <div class="form__text" style="margin-top:200px;">
+          If you don't have an account you may <a routerLink="/register"><strong>Registration</strong></a> 
         </div>
       </div>
     </div>
