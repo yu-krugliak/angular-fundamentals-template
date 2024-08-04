@@ -14,7 +14,9 @@ export class SearchComponent {
   searchTerm: string = '';
 
   onSearch() {
-    this.search.emit(this.searchTerm);
+    if (this.searchTerm.trim()) { 
+      this.search.emit(this.searchTerm);
+    }
   }
 }
 
