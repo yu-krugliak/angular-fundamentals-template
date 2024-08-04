@@ -12,7 +12,7 @@
       <div class="form__control">
         <!--Use the name `email` for the form control.-->
         <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Input text" formControlName="email"/>
+        <input type="text" id="email" placeholder="Input text" formControlName="email" emailValidator/>
         <span *ngIf="getEmail?.errors?.['required'] && (getEmail?.dirty || getEmail?.touched || registrationForm.touched)" id="emailErrorMessage" class="text-danger">Email is required.</span>
         <span *ngIf="getEmail?.errors?.['invalidEmail'] && getEmail?.dirty" id="emailErrorMessage" class="text-danger">
           Invalid Email: {{ getEmail?.errors?.['invalidEmail'].value }}

@@ -14,6 +14,7 @@ export class SearchComponent {
   searchTerm: string[] = [];
 
   onSubmit(): void {
+    this.search.emit("value");
     this.search.emit(this.searchTerm[0]);
   }
 }
