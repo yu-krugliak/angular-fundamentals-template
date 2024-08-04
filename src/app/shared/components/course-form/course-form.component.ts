@@ -24,13 +24,10 @@ export class CourseFormComponent {
       authors: this.fb.array([]),
       author: ['', [Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.minLength(2)]],
       courseAuthors: this.fb.array([]),
-      duration: ['', [Validators.required, Validators.min(0)]],
-      newAuthor: this.fb.group({
-        name: ['', [Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.minLength(2)]]
-      })
+      duration: ['', [Validators.required, Validators.min(0)]]
     });
   }
-
+  
   get title(){
     return this.courseForm.get('title');
   }
@@ -51,20 +48,15 @@ export class CourseFormComponent {
     return this.courseForm.get('courseAuthors') as FormArray;
   }
 
-  get newAuthorGroup(): FormGroup {
-    return this.courseForm.get('newAuthor') as FormGroup;
-  }
-
-  get name(){
-    return this.newAuthorGroup.get('name');
+  get author(){
+    return this.courseForm.get('author');
   }
 
   addAuthor(): void {
-    if (this.newAuthorGroup.valid && this.newAuthorGroup.get('name')?.value?.length > 0) {
-      const authorName = this.newAuthorGroup.get('name')?.value;
-      const authorControl = this.fb.control(authorName, [Validators.pattern(/^[a-zA-Z0-9]+$/)]);
+    if (this.author?.value?.length > 0) {
+      const authorControl = this.fb.control(this.author?.value, [Validators.pattern(/^[a-zA-Z0-9]+$/)]);
       this.authors.push(authorControl);
-      this.newAuthorGroup?.reset();
+      this.author?.reset();
     }
   }
 

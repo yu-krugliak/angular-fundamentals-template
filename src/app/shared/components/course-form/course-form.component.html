@@ -29,13 +29,13 @@
       </div>
       <div class="separator"></div>
       <h3>Authors</h3>
-      <div class="form__control" [formGroup]="newAuthorGroup">
+      <div class="form__control">
         <div class="course__flex">
           <!--Use the name `author` for the form control.-->
-          <input type="text" id="author" placeholder="Input Author Name" formControlName="name"/>
+          <input type="text" id="author" placeholder="Input Author Name" formControlName="author"/>
           <app-button type="'button'" id="createAuthor" (click)="addAuthor()" [buttonText]="'Add Author'"></app-button>
         </div>
-        <span *ngIf="name?.errors && (name?.dirty || name?.touched || courseForm.touched)" id="authorErrorMessage">New author should contain only latin letters and numbers.</span>
+        <span *ngIf="author?.errors && (author?.dirty || author?.touched || courseForm.touched)" id="authorErrorMessage">New author should contain only latin letters and numbers.</span>
         <div class="course__authors" *ngFor="let author of authors.controls; let i = index">
           <!--Use the name `authors` for the form array.-->
           <span>{{ author.value }}</span>

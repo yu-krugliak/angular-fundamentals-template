@@ -11,12 +11,10 @@ export class SearchComponent {
   @Input() placeholder: string = 'Input text';
   @Output() search = new EventEmitter<string>();
   
-  searchTerm: string = '';
+  searchTerm: string[] = [];
 
-  onSearch() {
-    if (this.searchTerm.trim()) { 
-      this.search.emit(this.searchTerm);
-    }
+  onSubmit(): void {
+    this.search.emit(this.searchTerm[0]);
   }
 }
 
