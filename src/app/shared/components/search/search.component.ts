@@ -14,11 +14,11 @@ export class SearchComponent {
 
   constructor(private coursesStore: CoursesStoreService) {} 
   
-  searchTerm: string = '';
+  searchTerm: string[] = [];
 
   onSubmit(): void {
     this.coursesStore.searchCourses(this.searchTerm);
-    this.search.emit(this.searchTerm);
+    this.search.emit(this.searchTerm[0]);
   }
 }
 
