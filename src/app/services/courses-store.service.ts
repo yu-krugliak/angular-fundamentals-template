@@ -120,7 +120,7 @@ export class CoursesStoreService {
         return this.coursesService.getAuthorById(id);
     }
 
-    searchCourses(searchParams: any): void {
+    searchCourses(searchParams: string): void {
         this.isLoading$$.next(true);
         this.coursesService.filterCourses(searchParams).pipe(
           tap(courses => {
