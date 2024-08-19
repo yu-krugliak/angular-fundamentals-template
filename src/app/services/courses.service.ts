@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CoursesService {
     constructor(private http: HttpClient) {}
 
-    getAll() {
+    getAll(): Observable<any>  {
         // Add your code here
         return this.http.get('http://localhost:4000/courses/all');
     }
@@ -18,12 +18,12 @@ export class CoursesService {
         return this.http.post('http://localhost:4000/courses/add', course);
     }
 
-    editCourse(id: string, course: Observable<any>) { // replace 'any' with the required interface
+    editCourse(id: string, course: any) { // replace 'any' with the required interface
         // Add your code here
         return this.http.put(`http://localhost:4000/courses/${id}`, course);
     }
 
-    getCourse(id: string) {
+    getCourse(id: string): Observable<any> {
         // Add your code here
         return this.http.get(`http://localhost:4000/courses/${id}`);
     }
@@ -38,7 +38,7 @@ export class CoursesService {
         return this.http.get(`http://localhost:4000/courses/filter?value=${value}`);
     }
 
-    getAllAuthors() {
+    getAllAuthors(): Observable<any> {
         // Add your code here
         return this.http.get('http://localhost:4000/authors/all');
     }
@@ -48,7 +48,7 @@ export class CoursesService {
         return this.http.post('http://localhost:4000/authors/add', { name });
     }
 
-    getAuthorById(id: string) {
+    getAuthorById(id: string): Observable<any> {
         // Add your code here
         return this.http.get(`http://localhost:4000/authors/${id}`);
     }
